@@ -198,6 +198,11 @@ if __name__ == "__main__":
 
     git_reset_hard(common_ancestor)
     print(f"Reset current branch to common ancestor ({common_ancestor}).")
+    print()
+
+    git_rebase_upstream()
+    print("Rebased current branch to upstream/master.")
+    print()
 
     for commit in reversed(new_commits):
         commit_sha, commit_title = commit.split(maxsplit=1)
@@ -211,8 +216,5 @@ if __name__ == "__main__":
         else:
             git_cherry_pick(commit_sha)
             print(f"  Cherry-picking {commit}...")
-
-    print("Rebase current branch to upstream/master.")
-    git_rebase_upstream()
 
     print("Done.")
